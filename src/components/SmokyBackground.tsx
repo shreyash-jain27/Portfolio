@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 
 interface MistParticle {
@@ -9,9 +8,9 @@ interface MistParticle {
   speedY: number;
   opacity: number;
   element: HTMLDivElement;
-  growthFactor: number; // Added for pulsating effect
-  maxSize: number; // Maximum size for the particle
-  minSize: number; // Minimum size for the particle
+  growthFactor: number;
+  maxSize: number;
+  minSize: number;
 }
 
 const SmokyBackground: React.FC = () => {
@@ -32,20 +31,17 @@ const SmokyBackground: React.FC = () => {
       const maxSize = baseSize * 1.5;
       
       const x = Math.random() * window.innerWidth;
-      // Position particles in the lower half of the screen if forceLowerHalf is true
       const y = forceLowerHalf 
         ? window.innerHeight * 0.5 + Math.random() * window.innerHeight * 0.5 
         : Math.random() * window.innerHeight;
       
-      const speedX = (Math.random() - 0.5) * 0.5;
-      // For lower half particles, slightly upward movement
+      const speedX = (Math.random() - 0.5) * 0.3; // Reduced speed
       const speedY = forceLowerHalf 
-        ? -Math.random() * 0.2 
-        : (Math.random() - 0.5) * 0.3;
+        ? -Math.random() * 0.1 // Slower upward movement for bottom particles
+        : (Math.random() - 0.5) * 0.2;
       
-      const opacity = Math.random() * 0.07;
-      // Control how fast the particle grows/shrinks
-      const growthFactor = 0.005 + Math.random() * 0.01;
+      const opacity = Math.random() * 0.03; // Reduced opacity
+      const growthFactor = 0.002 + Math.random() * 0.005; // Slower pulsing
       
       element.style.width = `${baseSize}px`;
       element.style.height = `${baseSize}px`;
@@ -69,37 +65,32 @@ const SmokyBackground: React.FC = () => {
       };
     };
     
-    // Create initial particles - mix of regular and bottom-focused particles
-    for (let i = 0; i < 15; i++) {
+    // Create fewer particles
+    for (let i = 0; i < 8; i++) {
       particlesRef.current.push(createMistParticle());
     }
     
-    // Add more particles specifically for the lower half
-    for (let i = 0; i < 10; i++) {
+    // Add more particles for the lower half
+    for (let i = 0; i < 5; i++) {
       particlesRef.current.push(createMistParticle(true));
     }
     
     const animateMist = () => {
       particlesRef.current.forEach(particle => {
-        // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         
-        // Reset position if out of bounds
         if (particle.x < -particle.maxSize) particle.x = window.innerWidth;
         if (particle.x > window.innerWidth) particle.x = -particle.maxSize;
         if (particle.y < -particle.maxSize) particle.y = window.innerHeight;
         if (particle.y > window.innerHeight) particle.y = -particle.maxSize;
         
-        // Pulsating size effect
         particle.size += particle.growthFactor;
         
-        // Reverse growth direction at min/max sizes
         if (particle.size >= particle.maxSize || particle.size <= particle.minSize) {
           particle.growthFactor = -particle.growthFactor;
         }
         
-        // Apply updated styles
         particle.element.style.left = `${particle.x}px`;
         particle.element.style.top = `${particle.y}px`;
         particle.element.style.width = `${particle.size}px`;
@@ -111,7 +102,6 @@ const SmokyBackground: React.FC = () => {
     
     animateMist();
     
-    // Handle window resize
     const handleResize = () => {
       particlesRef.current.forEach(particle => {
         if (particle.x > window.innerWidth) {
@@ -128,8 +118,6 @@ const SmokyBackground: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrameRef.current);
       window.removeEventListener('resize', handleResize);
-      
-      // Clean up particles
       particlesRef.current.forEach(particle => {
         container.removeChild(particle.element);
       });
