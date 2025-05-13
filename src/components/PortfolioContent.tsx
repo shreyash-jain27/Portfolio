@@ -113,28 +113,26 @@ const PortfolioContent: React.FC = () => {
     </div>;
 };
 
-// Helper Components with enhanced hover effects
 const SkillBar: React.FC<{
   skill: string;
   percentage: number;
-}> = ({
-  skill,
-  percentage
-}) => {
+}> = ({ skill, percentage }) => {
   return (
     <div className="group relative">
       <div className="flex justify-between mb-1">
-        <span className="text-theme-light group-hover:text-white group-hover:text-glow transition-all">{skill}</span>
-        <span className="text-theme-lightSecondary opacity-0 group-hover:opacity-100 transition-all">{percentage}%</span>
+        <span className="text-theme-light group-hover:text-white group-hover:text-glow transition-all">
+          {skill}
+        </span>
+        <span className="text-theme-lightSecondary opacity-0 group-hover:opacity-100 transition-all">
+          {percentage}%
+        </span>
       </div>
-      <div className="h-2 bg-theme-accent/20 rounded-full overflow-hidden">
-        <div className="h-full bg-theme-accent/30 rounded-full transition-all duration-500 group-hover:bg-theme-light" 
-          style={{width: '0%'}} />
-      </div>
-      {/* Hidden full bar that appears on hover */}
-      <div className="absolute top-6 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
-        <div className="h-full bg-theme-light rounded-full animate-grow" 
-          style={{width: `${percentage}%`}} />
+      <div className="skill-bar">
+        <div className="skill-bar-fill" style={{ width: `${percentage}%` }} />
+        <div 
+          className="skill-bar-fill-hover" 
+          style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} 
+        />
       </div>
     </div>
   );
