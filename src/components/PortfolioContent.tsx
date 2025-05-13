@@ -1,5 +1,4 @@
 import React from 'react';
-import { Progress } from '@/components/ui/progress';
 
 const PortfolioContent: React.FC = () => {
   return <div className="animate-fade-in pt-16">
@@ -114,7 +113,7 @@ const PortfolioContent: React.FC = () => {
     </div>;
 };
 
-// Updated SkillBar component with animation on hover
+// Helper Components with enhanced hover effects
 const SkillBar: React.FC<{
   skill: string;
   percentage: number;
@@ -126,30 +125,17 @@ const SkillBar: React.FC<{
     <div className="group relative">
       <div className="flex justify-between mb-1">
         <span className="text-theme-light group-hover:text-white group-hover:text-glow transition-all">{skill}</span>
-        <span className="text-theme-lightSecondary opacity-0 group-hover:opacity-100 transition-all duration-300">{percentage}%</span>
+        <span className="text-theme-lightSecondary opacity-0 group-hover:opacity-100 transition-all">{percentage}%</span>
       </div>
       <div className="h-2 bg-theme-accent/20 rounded-full overflow-hidden">
-        <div className="h-full bg-theme-accent/30 rounded-full w-0 group-hover:w-full transition-all duration-1000 ease-out" />
+        <div className="h-full bg-theme-accent/30 rounded-full transition-all duration-500 group-hover:bg-theme-light" 
+          style={{width: '0%'}} />
       </div>
-      <Progress 
-        value={0} 
-        className="absolute top-6 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-theme-accent/20"
-        // The following will be handled with JavaScript dynamically
-        style={{
-          "--value": "0",
-          "--transition-duration": "1s",
-        } as React.CSSProperties}
-        onMouseEnter={(e) => {
-          const target = e.currentTarget;
-          setTimeout(() => {
-            target.style.setProperty("--value", percentage.toString());
-          }, 10);
-        }}
-        onMouseLeave={(e) => {
-          const target = e.currentTarget;
-          target.style.setProperty("--value", "0");
-        }}
-      />
+      {/* Hidden full bar that appears on hover */}
+      <div className="absolute top-6 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="h-full bg-theme-light rounded-full animate-grow" 
+          style={{width: `${percentage}%`}} />
+      </div>
     </div>
   );
 };

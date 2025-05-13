@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -80,11 +81,10 @@
 
   .mist-particle {
     position: absolute;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     pointer-events: none;
     z-index: -1;
-    filter: blur(8px);
   }
 
   .skill-text {
@@ -127,11 +127,10 @@
 
   .bottom-mist-overlay {
     @apply fixed bottom-0 left-0 w-full pointer-events-none z-[-1];
-    height: 40vh;
-    background: radial-gradient(ellipse at center bottom, rgba(255,255,255,0.03) 0%, transparent 70%);
-    filter: blur(10px);
+    height: 50vh;
+    background: radial-gradient(ellipse at center bottom, rgba(255,255,255,0.05) 0%, transparent 70%);
   }
-
+  
   /* Animation for growing skill bar */
   @keyframes growBar {
     from { width: 0; }
