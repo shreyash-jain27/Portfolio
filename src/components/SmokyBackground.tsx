@@ -9,6 +9,9 @@ interface MistParticle {
   speedY: number;
   opacity: number;
   element: HTMLDivElement;
+  growthFactor: number; // Added for pulsating effect
+  maxSize: number; // Maximum size for the particle
+  minSize: number; // Minimum size for the particle
 }
 
 const SmokyBackground: React.FC = () => {
@@ -20,46 +23,87 @@ const SmokyBackground: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
     
-    const createMistParticle = (): MistParticle => {
+    const createMistParticle = (forceLowerHalf = false): MistParticle => {
       const element = document.createElement('div');
       element.className = 'mist-particle';
       
-      const size = Math.random() * 100 + 50;
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
-      const speedX = (Math.random() - 0.5) * 0.5;
-      const speedY = (Math.random() - 0.5) * 0.3;
-      const opacity = Math.random() * 0.07;
+      const minSize = 50;
+      const baseSize = Math.random() * 100 + minSize;
+      const maxSize = baseSize * 1.5;
       
-      element.style.width = `${size}px`;
-      element.style.height = `${size}px`;
+      const x = Math.random() * window.innerWidth;
+      // Position particles in the lower half of the screen if forceLowerHalf is true
+      const y = forceLowerHalf 
+        ? window.innerHeight * 0.5 + Math.random() * window.innerHeight * 0.5 
+        : Math.random() * window.innerHeight;
+      
+      const speedX = (Math.random() - 0.5) * 0.5;
+      // For lower half particles, slightly upward movement
+      const speedY = forceLowerHalf 
+        ? -Math.random() * 0.2 
+        : (Math.random() - 0.5) * 0.3;
+      
+      const opacity = Math.random() * 0.07;
+      // Control how fast the particle grows/shrinks
+      const growthFactor = 0.005 + Math.random() * 0.01;
+      
+      element.style.width = `${baseSize}px`;
+      element.style.height = `${baseSize}px`;
       element.style.left = `${x}px`;
       element.style.top = `${y}px`;
       element.style.opacity = opacity.toString();
       
       container.appendChild(element);
       
-      return { x, y, size, speedX, speedY, opacity, element };
+      return { 
+        x, 
+        y, 
+        size: baseSize, 
+        speedX, 
+        speedY, 
+        opacity, 
+        element,
+        growthFactor,
+        maxSize,
+        minSize
+      };
     };
     
-    // Create initial particles
-    for (let i = 0; i < 20; i++) {
+    // Create initial particles - mix of regular and bottom-focused particles
+    for (let i = 0; i < 15; i++) {
       particlesRef.current.push(createMistParticle());
+    }
+    
+    // Add more particles specifically for the lower half
+    for (let i = 0; i < 10; i++) {
+      particlesRef.current.push(createMistParticle(true));
     }
     
     const animateMist = () => {
       particlesRef.current.forEach(particle => {
+        // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         
         // Reset position if out of bounds
-        if (particle.x < -particle.size) particle.x = window.innerWidth;
-        if (particle.x > window.innerWidth) particle.x = -particle.size;
-        if (particle.y < -particle.size) particle.y = window.innerHeight;
-        if (particle.y > window.innerHeight) particle.y = -particle.size;
+        if (particle.x < -particle.maxSize) particle.x = window.innerWidth;
+        if (particle.x > window.innerWidth) particle.x = -particle.maxSize;
+        if (particle.y < -particle.maxSize) particle.y = window.innerHeight;
+        if (particle.y > window.innerHeight) particle.y = -particle.maxSize;
         
+        // Pulsating size effect
+        particle.size += particle.growthFactor;
+        
+        // Reverse growth direction at min/max sizes
+        if (particle.size >= particle.maxSize || particle.size <= particle.minSize) {
+          particle.growthFactor = -particle.growthFactor;
+        }
+        
+        // Apply updated styles
         particle.element.style.left = `${particle.x}px`;
         particle.element.style.top = `${particle.y}px`;
+        particle.element.style.width = `${particle.size}px`;
+        particle.element.style.height = `${particle.size}px`;
       });
       
       animationFrameRef.current = requestAnimationFrame(animateMist);
@@ -93,7 +137,12 @@ const SmokyBackground: React.FC = () => {
     };
   }, []);
   
-  return <div ref={containerRef} className="smoky-bg" />;
+  return (
+    <>
+      <div ref={containerRef} className="smoky-bg" />
+      <div className="bottom-mist-overlay" />
+    </>
+  );
 };
 
 export default SmokyBackground;
