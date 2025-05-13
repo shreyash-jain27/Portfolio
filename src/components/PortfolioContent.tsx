@@ -1,4 +1,5 @@
 import React from 'react';
+
 const PortfolioContent: React.FC = () => {
   return <div className="animate-fade-in pt-16">
       {/* Hero Section */}
@@ -7,7 +8,7 @@ const PortfolioContent: React.FC = () => {
           <h1 className="text-6xl md:text-8xl font-bold text-theme-light mb-6 animate-float">
             <span className="inline-block">Shreyash Jain</span>
           </h1>
-          <p className="text-xl md:text-2xl text-theme-lightSecondary max-w-2xl mb-12">
+          <p className="text-xl md:text-2xl text-theme-lightSecondary max-w-2xl mb-12 hover:text-white hover:text-glow transition-all duration-300">
             Creating innovative solutions through AI, Web Design, Robotics, and App Development
           </p>
           <div className="flex space-x-4">
@@ -37,7 +38,7 @@ const PortfolioContent: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="hover:text-white hover:text-glow transition-all duration-300">
               <p className="text-lg text-theme-lightSecondary mb-6">
                 I am a multidisciplinary technologist with expertise in AI Engineering, Web Design, Robotics Engineering, and App Development. 
                 My passion lies in creating innovative solutions that bridge the gap between cutting-edge technology and user-centered design.
@@ -112,7 +113,7 @@ const PortfolioContent: React.FC = () => {
     </div>;
 };
 
-// Helper Components
+// Helper Components with enhanced hover effects
 const SkillBar: React.FC<{
   skill: string;
   percentage: number;
@@ -120,18 +121,25 @@ const SkillBar: React.FC<{
   skill,
   percentage
 }) => {
-  return <div>
+  return (
+    <div className="group relative">
       <div className="flex justify-between mb-1">
-        <span className="text-theme-light">{skill}</span>
-        <span className="text-theme-lightSecondary">{percentage}%</span>
+        <span className="text-theme-light group-hover:text-white group-hover:text-glow transition-all">{skill}</span>
+        <span className="text-theme-lightSecondary opacity-0 group-hover:opacity-100 transition-all">{percentage}%</span>
       </div>
       <div className="h-2 bg-theme-accent/20 rounded-full overflow-hidden">
-        <div className="h-full bg-theme-light rounded-full animate-pulse" style={{
-        width: `${percentage}%`
-      }} />
+        <div className="h-full bg-theme-accent/30 rounded-full transition-all duration-500 group-hover:bg-theme-light" 
+          style={{width: '0%'}} />
       </div>
-    </div>;
+      {/* Hidden full bar that appears on hover */}
+      <div className="absolute top-6 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="h-full bg-theme-light rounded-full animate-grow" 
+          style={{width: `${percentage}%`}} />
+      </div>
+    </div>
+  );
 };
+
 const ProjectCard: React.FC<{
   title: string;
   category: string;
@@ -157,4 +165,5 @@ const ProjectCard: React.FC<{
       </div>
     </div>;
 };
+
 export default PortfolioContent;

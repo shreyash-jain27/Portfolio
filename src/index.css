@@ -59,6 +59,12 @@
   html {
     @apply scroll-smooth;
   }
+
+  /* Custom text selection style */
+  ::selection {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
 }
 
 @layer components {
@@ -112,5 +118,26 @@
 
   .active-nav-link {
     @apply text-white relative;
+  }
+
+  /* New classes for the enhanced UI */
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .bottom-mist-overlay {
+    @apply fixed bottom-0 left-0 w-full pointer-events-none z-[-1];
+    height: 50vh;
+    background: radial-gradient(ellipse at center bottom, rgba(255,255,255,0.05) 0%, transparent 70%);
+  }
+  
+  /* Animation for growing skill bar */
+  @keyframes growBar {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  .animate-grow {
+    animation: growBar 1s ease-out forwards;
   }
 }

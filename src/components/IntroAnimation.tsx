@@ -9,11 +9,12 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
   const [animationComplete, setAnimationComplete] = useState(false);
   
+  // Reversed directions for each skill
   const skills = [
-    { text: "AI Engineer", direction: "left" },
-    { text: "Web Designer", direction: "right" },
-    { text: "Robotics Engineer", direction: "left" },
-    { text: "App Developer", direction: "right" }
+    { text: "AI Engineer", direction: "right" },
+    { text: "Web Designer", direction: "left" },
+    { text: "Robotics Engineer", direction: "right" },
+    { text: "App Developer", direction: "left" }
   ];
   
   useEffect(() => {

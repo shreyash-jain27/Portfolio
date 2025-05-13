@@ -116,6 +116,10 @@ export default {
 				pulse: {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '.5' }
+				},
+				'grow-bar': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' }
 				}
 			},
 			animation: {
@@ -128,7 +132,8 @@ export default {
 				'fade-in': 'fade-in 1s ease-out',
 				'fade-out': 'fade-out 1s ease-out',
 				'float': 'float 3s ease-in-out infinite',
-				'pulse': 'pulse 3s ease-in-out infinite'
+				'pulse': 'pulse 3s ease-in-out infinite',
+				'grow-bar': 'grow-bar 1s ease-out forwards'
 			}
 		}
 	},
