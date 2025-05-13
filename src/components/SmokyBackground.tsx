@@ -9,9 +9,9 @@ interface MistParticle {
   speedY: number;
   opacity: number;
   element: HTMLDivElement;
-  growthFactor: number; // Added for pulsating effect
-  maxSize: number; // Maximum size for the particle
-  minSize: number; // Minimum size for the particle
+  growthFactor: number;
+  maxSize: number;
+  minSize: number;
 }
 
 const SmokyBackground: React.FC = () => {
@@ -43,9 +43,10 @@ const SmokyBackground: React.FC = () => {
         ? -Math.random() * 0.2 
         : (Math.random() - 0.5) * 0.3;
       
-      const opacity = Math.random() * 0.07;
+      // Lower opacity for a more subtle effect
+      const opacity = Math.random() * 0.05; // Reduced from 0.07
       // Control how fast the particle grows/shrinks
-      const growthFactor = 0.005 + Math.random() * 0.01;
+      const growthFactor = 0.003 + Math.random() * 0.008; // Slightly slower pulsing
       
       element.style.width = `${baseSize}px`;
       element.style.height = `${baseSize}px`;
@@ -69,13 +70,13 @@ const SmokyBackground: React.FC = () => {
       };
     };
     
-    // Create initial particles - mix of regular and bottom-focused particles
-    for (let i = 0; i < 15; i++) {
+    // Create fewer initial particles for a more subtle effect
+    for (let i = 0; i < 10; i++) {
       particlesRef.current.push(createMistParticle());
     }
     
     // Add more particles specifically for the lower half
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       particlesRef.current.push(createMistParticle(true));
     }
     
