@@ -1,14 +1,11 @@
-
 import React from 'react';
-
 const PortfolioContent: React.FC = () => {
-  return (
-    <div className="animate-fade-in pt-16">
+  return <div className="animate-fade-in pt-16">
       {/* Hero Section */}
       <section id="home" className="portfolio-section">
         <div className="content-container flex flex-col items-center justify-center text-center h-full">
           <h1 className="text-6xl md:text-8xl font-bold text-theme-light mb-6 animate-float">
-            <span className="inline-block">Portfolio</span>
+            <span className="inline-block">Shreyash Jain</span>
           </h1>
           <p className="text-xl md:text-2xl text-theme-lightSecondary max-w-2xl mb-12">
             Creating innovative solutions through AI, Web Design, Robotics, and App Development
@@ -62,36 +59,12 @@ const PortfolioContent: React.FC = () => {
         <div className="content-container">
           <h2 className="section-title">My Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard 
-              title="AI Image Generation"
-              category="AI Engineering"
-              description="A deep learning model that generates realistic images from textual descriptions."
-            />
-            <ProjectCard 
-              title="E-commerce Platform"
-              category="Web Design"
-              description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience."
-            />
-            <ProjectCard 
-              title="Autonomous Drone"
-              category="Robotics Engineering"
-              description="A drone that navigates environments autonomously using computer vision."
-            />
-            <ProjectCard 
-              title="Fitness Tracker App"
-              category="App Development"
-              description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations."
-            />
-            <ProjectCard 
-              title="Natural Language Processor"
-              category="AI Engineering"
-              description="An NLP system that analyzes sentiment and extracts key information from text."
-            />
-            <ProjectCard 
-              title="Smart Home Controller"
-              category="Robotics Engineering"
-              description="An IoT system that integrates with various smart home devices for centralized control."
-            />
+            <ProjectCard title="AI Image Generation" category="AI Engineering" description="A deep learning model that generates realistic images from textual descriptions." />
+            <ProjectCard title="E-commerce Platform" category="Web Design" description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience." />
+            <ProjectCard title="Autonomous Drone" category="Robotics Engineering" description="A drone that navigates environments autonomously using computer vision." />
+            <ProjectCard title="Fitness Tracker App" category="App Development" description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations." />
+            <ProjectCard title="Natural Language Processor" category="AI Engineering" description="An NLP system that analyzes sentiment and extracts key information from text." />
+            <ProjectCard title="Smart Home Controller" category="Robotics Engineering" description="An IoT system that integrates with various smart home devices for centralized control." />
           </div>
         </div>
       </section>
@@ -105,36 +78,20 @@ const PortfolioContent: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-theme-light mb-2">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" 
-                  />
+                  <input type="text" id="name" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-theme-light mb-2">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" 
-                  />
+                  <input type="email" id="email" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
                 </div>
               </div>
               <div>
                 <label htmlFor="subject" className="block text-theme-light mb-2">Subject</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" 
-                />
+                <input type="text" id="subject" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
               </div>
               <div>
                 <label htmlFor="message" className="block text-theme-light mb-2">Message</label>
-                <textarea 
-                  id="message" 
-                  rows={5} 
-                  className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" 
-                ></textarea>
+                <textarea id="message" rows={5} className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"></textarea>
               </div>
               <div>
                 <button type="submit" className="w-full bg-theme-accent text-theme-light py-3 px-6 rounded-md hover:bg-opacity-80 transition-all">
@@ -152,31 +109,39 @@ const PortfolioContent: React.FC = () => {
           <p className="text-theme-lightSecondary">&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
 
 // Helper Components
-const SkillBar: React.FC<{ skill: string; percentage: number }> = ({ skill, percentage }) => {
-  return (
-    <div>
+const SkillBar: React.FC<{
+  skill: string;
+  percentage: number;
+}> = ({
+  skill,
+  percentage
+}) => {
+  return <div>
       <div className="flex justify-between mb-1">
         <span className="text-theme-light">{skill}</span>
         <span className="text-theme-lightSecondary">{percentage}%</span>
       </div>
       <div className="h-2 bg-theme-accent/20 rounded-full overflow-hidden">
-        <div 
-          className="h-full bg-theme-light rounded-full animate-pulse"
-          style={{ width: `${percentage}%` }}
-        />
+        <div className="h-full bg-theme-light rounded-full animate-pulse" style={{
+        width: `${percentage}%`
+      }} />
       </div>
-    </div>
-  );
+    </div>;
 };
-
-const ProjectCard: React.FC<{ title: string; category: string; description: string }> = ({ title, category, description }) => {
-  return (
-    <div className="project-card group">
+const ProjectCard: React.FC<{
+  title: string;
+  category: string;
+  description: string;
+}> = ({
+  title,
+  category,
+  description
+}) => {
+  return <div className="project-card group">
       <div className="h-48 bg-theme-accent/30 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-2xl font-bold text-theme-light opacity-50">{title}</span>
@@ -190,8 +155,6 @@ const ProjectCard: React.FC<{ title: string; category: string; description: stri
         <h3 className="text-xl font-semibold text-theme-light mt-1 mb-3">{title}</h3>
         <p className="text-theme-lightSecondary">{description}</p>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default PortfolioContent;
