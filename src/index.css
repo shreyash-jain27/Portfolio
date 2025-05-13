@@ -32,7 +32,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-theme-dark text-foreground overflow-x-hidden;
+    @apply bg-theme-dark text-foreground;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
   html {
@@ -46,18 +46,36 @@
 
 @layer components {
   .smoky-bg {
-    @apply fixed w-full h-full top-0 left-0 bg-transparent pointer-events-none -z-10;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
   }
 
   .mist-particle {
-    @apply absolute rounded-full pointer-events-none -z-10;
+    position: absolute;
     background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .bottom-mist-overlay {
-    @apply fixed bottom-0 left-0 w-full pointer-events-none -z-10;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     height: 50vh;
-    background: radial-gradient(ellipse at center bottom, rgba(255,255,255,0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+      ellipse at center bottom,
+      rgba(255, 255, 255, 0.02) 0%,
+      transparent 70%
+    );
   }
 
   .skill-bar {
@@ -65,22 +83,18 @@
   }
 
   .skill-bar-fill {
-    @apply h-full bg-theme-accent/30 rounded-full transition-all duration-500;
-    width: 0%;
+    @apply absolute inset-0 bg-theme-accent/30 rounded-full transition-all duration-500;
+    width: var(--fill-width, 0%);
   }
 
-  .skill-bar-fill-hover {
-    @apply absolute top-0 left-0 w-0 h-full bg-theme-light rounded-full opacity-0 transition-all duration-500;
+  .skill-bar-hover {
+    @apply absolute inset-0 bg-theme-light rounded-full opacity-0 transition-all duration-500;
+    width: 0;
   }
 
-  .group:hover .skill-bar-fill-hover {
+  .group:hover .skill-bar-hover {
     @apply opacity-100;
-    animation: fillBar 1s ease-out forwards;
-  }
-
-  @keyframes fillBar {
-    from { width: 0%; }
-    to { width: var(--fill-width); }
+    width: var(--fill-width, 0%);
   }
 
   .skill-text {
@@ -118,14 +132,5 @@
 
   .text-glow {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-
-  @keyframes growBar {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  
-  .animate-grow {
-    animation: growBar 1s ease-out forwards;
   }
 }

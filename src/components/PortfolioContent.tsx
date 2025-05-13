@@ -1,7 +1,8 @@
 import React from 'react';
 
 const PortfolioContent: React.FC = () => {
-  return <div className="animate-fade-in pt-16">
+  return (
+    <div className="animate-fade-in pt-16">
       {/* Hero Section */}
       <section id="home" className="portfolio-section">
         <div className="content-container flex flex-col items-center justify-center text-center h-full">
@@ -60,12 +61,36 @@ const PortfolioContent: React.FC = () => {
         <div className="content-container">
           <h2 className="section-title">My Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard title="AI Image Generation" category="AI Engineering" description="A deep learning model that generates realistic images from textual descriptions." />
-            <ProjectCard title="E-commerce Platform" category="Web Design" description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience." />
-            <ProjectCard title="Autonomous Drone" category="Robotics Engineering" description="A drone that navigates environments autonomously using computer vision." />
-            <ProjectCard title="Fitness Tracker App" category="App Development" description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations." />
-            <ProjectCard title="Natural Language Processor" category="AI Engineering" description="An NLP system that analyzes sentiment and extracts key information from text." />
-            <ProjectCard title="Smart Home Controller" category="Robotics Engineering" description="An IoT system that integrates with various smart home devices for centralized control." />
+            <ProjectCard 
+              title="AI Image Generation" 
+              category="AI Engineering" 
+              description="A deep learning model that generates realistic images from textual descriptions." 
+            />
+            <ProjectCard 
+              title="E-commerce Platform" 
+              category="Web Design" 
+              description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience." 
+            />
+            <ProjectCard 
+              title="Autonomous Drone" 
+              category="Robotics Engineering" 
+              description="A drone that navigates environments autonomously using computer vision." 
+            />
+            <ProjectCard 
+              title="Fitness Tracker App" 
+              category="App Development" 
+              description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations." 
+            />
+            <ProjectCard 
+              title="Natural Language Processor" 
+              category="AI Engineering" 
+              description="An NLP system that analyzes sentiment and extracts key information from text." 
+            />
+            <ProjectCard 
+              title="Smart Home Controller" 
+              category="Robotics Engineering" 
+              description="An IoT system that integrates with various smart home devices for centralized control." 
+            />
           </div>
         </div>
       </section>
@@ -110,13 +135,11 @@ const PortfolioContent: React.FC = () => {
           <p className="text-theme-lightSecondary">&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
 
-const SkillBar: React.FC<{
-  skill: string;
-  percentage: number;
-}> = ({ skill, percentage }) => {
+const SkillBar: React.FC<{ skill: string; percentage: number }> = ({ skill, percentage }) => {
   return (
     <div className="group relative">
       <div className="flex justify-between mb-1">
@@ -128,11 +151,8 @@ const SkillBar: React.FC<{
         </span>
       </div>
       <div className="skill-bar">
-        <div className="skill-bar-fill" style={{ width: `${percentage}%` }} />
-        <div 
-          className="skill-bar-fill-hover" 
-          style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} 
-        />
+        <div className="skill-bar-fill" style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} />
+        <div className="skill-bar-hover" style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} />
       </div>
     </div>
   );
@@ -142,12 +162,9 @@ const ProjectCard: React.FC<{
   title: string;
   category: string;
   description: string;
-}> = ({
-  title,
-  category,
-  description
-}) => {
-  return <div className="project-card group">
+}> = ({ title, category, description }) => {
+  return (
+    <div className="project-card group">
       <div className="h-48 bg-theme-accent/30 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-2xl font-bold text-theme-light opacity-50">{title}</span>
@@ -161,7 +178,8 @@ const ProjectCard: React.FC<{
         <h3 className="text-xl font-semibold text-theme-light mt-1 mb-3">{title}</h3>
         <p className="text-theme-lightSecondary">{description}</p>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default PortfolioContent;
