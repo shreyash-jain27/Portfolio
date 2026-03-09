@@ -12,8 +12,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
   const skills = [
     { text: "Frontend Developer", direction: "right" },
     { text: "Web Designer", direction: "left" },
-    { text: "ML Engineer", direction: "right" },
-    // { text: "App Developer", direction: "left" }
+    { text: "ML Engineer", direction: "right" }
   ];
 
   useEffect(() => {
