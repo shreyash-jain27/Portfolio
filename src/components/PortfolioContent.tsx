@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const PortfolioContent: React.FC = () => {
   return (
@@ -10,13 +10,20 @@ const PortfolioContent: React.FC = () => {
             <span className="inline-block">Shreyash Jain</span>
           </h1>
           <p className="text-xl md:text-2xl text-theme-lightSecondary max-w-2xl mb-12 hover:text-white hover:text-glow transition-all duration-300">
-            Creating innovative solutions through AI, Web Design, Robotics, and App Development
+            Creating innovative solutions through AI, Web Design, Robotics, and
+            App Development
           </p>
           <div className="flex space-x-4">
-            <a href="#projects" className="px-8 py-3 bg-theme-accent text-theme-light rounded-md hover:bg-opacity-80 transition-all">
+            <a
+              href="#projects"
+              className="px-8 py-3 bg-theme-accent text-theme-light rounded-md hover:bg-opacity-80 transition-all"
+            >
               View Projects
             </a>
-            <a href="#contact" className="px-8 py-3 border border-theme-light text-theme-light rounded-md hover:bg-theme-light hover:text-theme-dark transition-all">
+            <a
+              href="#contact"
+              className="px-8 py-3 border border-theme-light text-theme-light rounded-md hover:bg-theme-light hover:text-theme-dark transition-all"
+            >
               Contact Me
             </a>
           </div>
@@ -24,13 +31,18 @@ const PortfolioContent: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="portfolio-section bg-theme-darkSecondary/30">
+      <section
+        id="about"
+        className="portfolio-section bg-theme-darkSecondary/30"
+      >
         <div className="content-container">
           <h2 className="section-title">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <div className="bg-theme-dark p-6 rounded-lg h-full">
-                <h3 className="text-2xl font-bold text-theme-light mb-4">My Skills</h3>
+                <h3 className="text-2xl font-bold text-theme-light mb-4">
+                  My Skills
+                </h3>
                 <div className="space-y-4">
                   <SkillBar skill="AI Engineering" percentage={90} />
                   <SkillBar skill="Web Design" percentage={85} />
@@ -41,15 +53,34 @@ const PortfolioContent: React.FC = () => {
             </div>
             <div className="hover:text-white hover:text-glow transition-all duration-300">
               <p className="text-lg text-theme-lightSecondary mb-6">
-                I am a multidisciplinary technologist with expertise in AI Engineering, Web Design, Robotics Engineering, and App Development. 
-                My passion lies in creating innovative solutions that bridge the gap between cutting-edge technology and user-centered design.
+                Hi, I'm **Shreyash Jain**, a passionate **Full Stack Developer**
+                who enjoys building scalable web applications and solving
+                complex problems through code. I love working across the entire
+                stack — from designing clean and responsive user interfaces to
+                building efficient backend systems and databases. My focus is on
+                creating applications that are not only functional but also
+                intuitive and performant. Alongside development, I actively
+                practice **Data Structures and Algorithms** to strengthen my
+                problem-solving skills and write optimized code. I enjoy
+                learning new technologies, experimenting with ideas, and
+                continuously improving my development workflow. Currently, I’m
+                focused on: * Building real-world full stack projects *
+                Improving my problem-solving skills through DSA * Learning
+                modern web technologies and best practices I’m always excited to
+                collaborate, contribute to meaningful projects, and grow as a
+                developer. When I'm not coding, you'll usually find me exploring
+                new tech, improving my skills, or working on ideas that
+                challenge me to think differently.
               </p>
               <p className="text-lg text-theme-lightSecondary mb-6">
-                With years of experience across multiple domains, I bring a unique perspective to every project, 
-                combining technical knowledge with creative problem-solving to deliver exceptional results.
+                With years of experience across multiple domains, I bring a
+                unique perspective to every project, combining technical
+                knowledge with creative problem-solving to deliver exceptional
+                results.
               </p>
               <p className="text-lg text-theme-light">
-                Let's collaborate and bring your vision to life with technology that makes a difference.
+                Let's collaborate and bring your vision to life with technology
+                that makes a difference.
               </p>
             </div>
           </div>
@@ -61,66 +92,105 @@ const PortfolioContent: React.FC = () => {
         <div className="content-container">
           <h2 className="section-title">My Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard 
-              title="AI Image Generation" 
-              category="AI Engineering" 
-              description="A deep learning model that generates realistic images from textual descriptions." 
+            <ProjectCard
+              title="AI Image Generation"
+              category="AI Engineering"
+              description="A deep learning model that generates realistic images from textual descriptions."
             />
-            <ProjectCard 
-              title="E-commerce Platform" 
-              category="Web Design" 
-              description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience." 
+            <ProjectCard
+              title="E-commerce Platform"
+              category="Web Design"
+              description="A fully responsive e-commerce website with modern UI/UX and seamless checkout experience."
             />
-            <ProjectCard 
-              title="Autonomous Drone" 
-              category="Robotics Engineering" 
-              description="A drone that navigates environments autonomously using computer vision." 
+            <ProjectCard
+              title="Autonomous Drone"
+              category="Robotics Engineering"
+              description="A drone that navigates environments autonomously using computer vision."
             />
-            <ProjectCard 
-              title="Fitness Tracker App" 
-              category="App Development" 
-              description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations." 
+            <ProjectCard
+              title="Fitness Tracker App"
+              category="App Development"
+              description="A mobile application that tracks workouts, nutrition, and provides personalized recommendations."
             />
-            <ProjectCard 
-              title="Natural Language Processor" 
-              category="AI Engineering" 
-              description="An NLP system that analyzes sentiment and extracts key information from text." 
+            <ProjectCard
+              title="Natural Language Processor"
+              category="AI Engineering"
+              description="An NLP system that analyzes sentiment and extracts key information from text."
             />
-            <ProjectCard 
-              title="Smart Home Controller" 
-              category="Robotics Engineering" 
-              description="An IoT system that integrates with various smart home devices for centralized control." 
+            <ProjectCard
+              title="Smart Home Controller"
+              category="Robotics Engineering"
+              description="An IoT system that integrates with various smart home devices for centralized control."
             />
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="portfolio-section bg-theme-darkSecondary/30">
+      <section
+        id="contact"
+        className="portfolio-section bg-theme-darkSecondary/30"
+      >
         <div className="content-container">
           <h2 className="section-title">Get In Touch</h2>
           <div className="max-w-2xl mx-auto">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-theme-light mb-2">Name</label>
-                  <input type="text" id="name" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
+                  <label htmlFor="name" className="block text-theme-light mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-theme-light mb-2">Email</label>
-                  <input type="email" id="email" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
+                  <label
+                    htmlFor="email"
+                    className="block text-theme-light mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"
+                  />
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-theme-light mb-2">Subject</label>
-                <input type="text" id="subject" className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light" />
+                <label
+                  htmlFor="subject"
+                  className="block text-theme-light mb-2"
+                >
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"
+                />
               </div>
               <div>
-                <label htmlFor="message" className="block text-theme-light mb-2">Message</label>
-                <textarea id="message" rows={5} className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"></textarea>
+                <label
+                  htmlFor="message"
+                  className="block text-theme-light mb-2"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  className="w-full bg-theme-dark border border-theme-accent/50 rounded-md px-4 py-3 text-theme-light focus:outline-none focus:ring-2 focus:ring-theme-light"
+                ></textarea>
               </div>
               <div>
-                <button type="submit" className="w-full bg-theme-accent text-theme-light py-3 px-6 rounded-md hover:bg-opacity-80 transition-all">
+                <button
+                  type="submit"
+                  className="w-full bg-theme-accent text-theme-light py-3 px-6 rounded-md hover:bg-opacity-80 transition-all"
+                >
                   Send Message
                 </button>
               </div>
@@ -132,14 +202,19 @@ const PortfolioContent: React.FC = () => {
       {/* Footer */}
       <footer className="py-8 bg-theme-dark">
         <div className="content-container text-center">
-          <p className="text-theme-lightSecondary">&copy; {new Date().getFullYear()} Portfolio. All rights reserved.</p>
+          <p className="text-theme-lightSecondary">
+            &copy; {new Date().getFullYear()} Portfolio. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
   );
 };
 
-const SkillBar: React.FC<{ skill: string; percentage: number }> = ({ skill, percentage }) => {
+const SkillBar: React.FC<{ skill: string; percentage: number }> = ({
+  skill,
+  percentage,
+}) => {
   return (
     <div className="group relative">
       <div className="flex justify-between mb-1">
@@ -151,8 +226,14 @@ const SkillBar: React.FC<{ skill: string; percentage: number }> = ({ skill, perc
         </span>
       </div>
       <div className="skill-bar">
-        <div className="skill-bar-fill" style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} />
-        <div className="skill-bar-hover" style={{ '--fill-width': `${percentage}%` } as React.CSSProperties} />
+        <div
+          className="skill-bar-fill"
+          style={{ "--fill-width": `${percentage}%` } as React.CSSProperties}
+        />
+        <div
+          className="skill-bar-hover"
+          style={{ "--fill-width": `${percentage}%` } as React.CSSProperties}
+        />
       </div>
     </div>
   );
@@ -167,7 +248,9 @@ const ProjectCard: React.FC<{
     <div className="project-card group">
       <div className="h-48 bg-theme-accent/30 relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-bold text-theme-light opacity-50">{title}</span>
+          <span className="text-2xl font-bold text-theme-light opacity-50">
+            {title}
+          </span>
         </div>
         <div className="absolute inset-0 bg-theme-dark opacity-0 group-hover:opacity-80 transition-opacity duration-300 flex items-center justify-center">
           <span className="text-theme-light">View Project</span>
@@ -175,7 +258,9 @@ const ProjectCard: React.FC<{
       </div>
       <div className="p-6">
         <span className="text-sm text-theme-light/70">{category}</span>
-        <h3 className="text-xl font-semibold text-theme-light mt-1 mb-3">{title}</h3>
+        <h3 className="text-xl font-semibold text-theme-light mt-1 mb-3">
+          {title}
+        </h3>
         <p className="text-theme-lightSecondary">{description}</p>
       </div>
     </div>
