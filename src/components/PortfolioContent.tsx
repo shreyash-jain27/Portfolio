@@ -21,7 +21,9 @@ import {
   Layers,
   Search,
   CheckCircle2,
-  X
+  X,
+  Database,
+  Box
 } from 'lucide-react';
 
 interface ProjectCardProps {
@@ -78,17 +80,17 @@ const PortfolioContent: React.FC = () => {
   const skills = [
     { name: 'React', icon: <Code className="w-6 h-6" /> },
     { name: 'Node.js', icon: <Cpu className="w-6 h-6" /> },
-    { name: 'TypeScript', icon: <Code className="w-6 h-6" /> },
+    { name: 'Redis', icon: <Layers className="w-6 h-6" /> },
     { name: 'AI/ML', icon: <Brain className="w-6 h-6" /> },
-    { name: 'UI/UX', icon: <Palette className="w-6 h-6" /> },
-    { name: 'PostgreSQL', icon: <Globe className="w-6 h-6" /> },
+    { name: 'MongoDB', icon: <Database className="w-6 h-6" /> },
+    { name: 'Docker', icon: <Box className="w-6 h-6" /> },
   ];
 
   const projects = [
     {
       title: "MicroServices",
       category: "Backend Architecture",
-      description: "A robust microservices ecosystem demonstrating inter-service communication, scalability, and distributed systems architecture.",
+      description: "A production-grade microservices ecosystem featuring modular architecture, JWT auth, API Gateway, and Redis-powered asynchronous notifications.",
       image: "/images/smart_home_visual.png",
       isLarge: true,
       githubUrl: "https://github.com/shreyash-jain27/MicroServices",
@@ -96,35 +98,19 @@ const PortfolioContent: React.FC = () => {
     },
     {
       title: "HookFlow",
-      category: "Workflow Automation",
-      description: "A powerful platform for creating and managing automated workflows with custom hooks and seamless integrations.",
+      category: "Infrastructure",
+      description: "High-performance webhook delivery engine featuring event fan-out, exponential backoff retries, and SHA256 HMAC security for reliable scale.",
       image: "/images/ai_image_gen_visual.png",
       githubUrl: "https://github.com/shreyash-jain27/HookFlow",
       demoUrl: "https://hookflow-2zxk.onrender.com"
     },
     {
       title: "DEVFLOW",
-      category: "Web Platform",
-      description: "A developer-centric Q&A platform designed for sharing knowledge, solving technical challenges, and community building.",
+      category: "AI Platform",
+      description: "Intelligent task management platform leveraging LLMs for autonomous subtask generation, priority suggestion, and real-time collaboration.",
       image: "/images/autonomous_drone_visual.png",
       githubUrl: "https://github.com/shreyash-jain27/DEVFLOW",
       demoUrl: "https://devflow-dg8m.onrender.com"
-    },
-    {
-      title: "Aether AI",
-      category: "AI Engineering",
-      description: "Generative neural networks crafting high-fidelity synthetic environments with advanced ML models.",
-      image: "/images/ai_image_gen_visual.png",
-      githubUrl: "#",
-      demoUrl: "#"
-    },
-    {
-      title: "Zenith Drone",
-      category: "Robotics",
-      description: "Autonomous flight systems featuring real-time computer vision navigation and obstacle avoidance.",
-      image: "/images/autonomous_drone_visual.png",
-      githubUrl: "#",
-      demoUrl: "#"
     }
   ];
 
@@ -274,12 +260,12 @@ const PortfolioContent: React.FC = () => {
               </h3>
               <div className="grid grid-cols-2 gap-y-4">
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase text-white/30 font-black">Frontend</span>
-                  <p className="text-sm font-bold">React, Next.js, TS</p>
+                  <span className="text-[10px] uppercase text-white/30 font-black">Backend & Infra</span>
+                  <p className="text-sm font-bold">Node, Redis, Docker, BullMQ</p>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase text-white/30 font-black">Backend</span>
-                  <p className="text-sm font-bold">Node, Python, SQL</p>
+                  <span className="text-[10px] uppercase text-white/30 font-black">Data & AI</span>
+                  <p className="text-sm font-bold">MongoDB, Socket.IO, LLMs</p>
                 </div>
               </div>
             </div>
