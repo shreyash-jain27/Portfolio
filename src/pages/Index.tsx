@@ -1,9 +1,10 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import IntroAnimation from '../components/IntroAnimation';
 import SmokyBackground from '../components/SmokyBackground';
 import Navigation from '../components/Navigation';
 import PortfolioContent from '../components/PortfolioContent';
+import GrainOverlay from '../components/GrainOverlay';
+import { CursorProvider, Cursor } from "@/components/animate-ui/components/animate/cursor";
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -15,21 +16,24 @@ const Index = () => {
   };
   
   return (
-    <div className="min-h-screen bg-theme-dark text-theme-light">
-      {/* Smoky background effect (always present) */}
-      <SmokyBackground />
-      
-      {/* Intro animation */}
-      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
-      
-      {/* Main content (only shown after intro) */}
-      {showContent && (
-        <>
-          <Navigation />
-          <PortfolioContent />
-        </>
-      )}
-    </div>
+    <CursorProvider global>
+      <div className="min-h-screen bg-[#050505] selection:bg-white selection:text-black overflow-x-hidden">
+        <Cursor />
+        <SmokyBackground />
+        <GrainOverlay />
+        
+        {/* Intro animation */}
+        {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+        
+        {/* Main content (only shown after intro) */}
+        {showContent && (
+          <>
+            <Navigation />
+            <PortfolioContent />
+          </>
+        )}
+      </div>
+    </CursorProvider>
   );
 };
 

@@ -17,6 +17,8 @@ const SmokyBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<MistParticle[]>([]);
   const animationFrameRef = useRef<number>(0);
+  const mouseX = useRef<number>(0);
+  const mouseY = useRef<number>(0);
   
   useEffect(() => {
     const container = containerRef.current;
@@ -35,19 +37,27 @@ const SmokyBackground: React.FC = () => {
         ? window.innerHeight * 0.5 + Math.random() * window.innerHeight * 0.5 
         : Math.random() * window.innerHeight;
       
-      const speedX = (Math.random() - 0.5) * 0.3; // Reduced speed
+      const speedX = (Math.random() - 0.5) * 0.3;
       const speedY = forceLowerHalf 
-        ? -Math.random() * 0.1 // Slower upward movement for bottom particles
+        ? -Math.random() * 0.1 
         : (Math.random() - 0.5) * 0.2;
       
-      const opacity = Math.random() * 0.03; // Reduced opacity
-      const growthFactor = 0.002 + Math.random() * 0.005; // Slower pulsing
+      const opacity = Math.random() * 0.03;
+      const growthFactor = 0.001 + Math.random() * 0.003;
+
+      // New harmonic colors
+      const isIndigo = Math.random() > 0.5;
+      const color = isIndigo 
+        ? 'rgba(99, 102, 241, 0.1)' // Soft Indigo
+        : 'rgba(6, 182, 212, 0.1)'; // Soft Cyan
       
       element.style.width = `${baseSize}px`;
       element.style.height = `${baseSize}px`;
       element.style.left = `${x}px`;
       element.style.top = `${y}px`;
       element.style.opacity = opacity.toString();
+      element.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+      element.style.filter = 'blur(40px)';
       
       container.appendChild(element);
       
@@ -65,18 +75,31 @@ const SmokyBackground: React.FC = () => {
       };
     };
     
-    // Create fewer particles
-    for (let i = 0; i < 8; i++) {
-      particlesRef.current.push(createMistParticle());
-    }
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.current = e.clientX;
+      mouseY.current = e.clientY;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
     
-    // Add more particles for the lower half
-    for (let i = 0; i < 5; i++) {
-      particlesRef.current.push(createMistParticle(true));
+    // Create fewer but larger particles
+    for (let i = 0; i < 12; i++) {
+      particlesRef.current.push(createMistParticle());
     }
     
     const animateMist = () => {
       particlesRef.current.forEach(particle => {
+        // Move towards/away from mouse proximity
+        const dx = particle.x - mouseX.current;
+        const dy = particle.y - mouseY.current;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 400) {
+          const force = (400 - distance) / 400;
+          particle.x += (dx / distance) * force * 2;
+          particle.y += (dy / distance) * force * 2;
+        }
+
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         
@@ -118,8 +141,11 @@ const SmokyBackground: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrameRef.current);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
       particlesRef.current.forEach(particle => {
-        container.removeChild(particle.element);
+        if (container.contains(particle.element)) {
+          container.removeChild(particle.element);
+        }
       });
       particlesRef.current = [];
     };

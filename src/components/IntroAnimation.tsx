@@ -10,9 +10,9 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
 
   // Reversed directions for each skill
   const skills = [
-    { text: "Frontend Developer", direction: "right" },
-    { text: "Web Designer", direction: "left" },
-    { text: "ML Engineer", direction: "right" }
+    { text: "Architecting Intelligence", direction: "right" },
+    { text: "Sculpting Experiences", direction: "left" },
+    { text: "Engineering the Future", direction: "right" },
   ];
 
   useEffect(() => {
@@ -21,14 +21,14 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         setAnimationComplete(true);
         setTimeout(() => {
           onComplete();
-        }, 1000);
-      }, 500);
+        }, 800);
+      }, 300);
       return;
     }
 
     const timeout = setTimeout(() => {
       setCurrentSkillIndex(currentSkillIndex + 1);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [currentSkillIndex, skills.length, onComplete]);
@@ -53,8 +53,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         return (
           <div
             key={index}
-            className={`skill-text absolute ${animationClass} ${isActive ? "opacity-100" : ""}`}
-            style={{ animationDuration: "1s", animationFillMode: "forwards" }}
+            className={`skill-text absolute text-center px-10 ${animationClass} ${isActive ? "opacity-100" : ""}`}
+            style={{ animationDuration: "0.6s", animationFillMode: "forwards" }}
           >
             {skill.text}
           </div>
